@@ -2,15 +2,15 @@ variable "vpc_id" {
   type = string
 }
 
-variable "subnet_ids" {
+variable "subnets" {
   type = list(string)
 }
 
-variable "prefix" {
+variable "name" {
   type = string
 }
 
-variable "is_backup_enabled" {
+variable "enable_backup" {
   type    = bool
   default = true
 }

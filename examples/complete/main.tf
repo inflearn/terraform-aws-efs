@@ -25,10 +25,25 @@ module "vpc" {
 }
 
 module "efs" {
-  source     = "../../"
-  prefix     = "example-inflab-efs-"
-  vpc_id     = module.vpc.vpc_id
+  name    = "example-inflab-efs-"
+  source  = "../../"
+  vpc_id  = module.vpc.vpc_id
   subnets = module.vpc.private_subnets
+
+  access_point = [
+    {
+      root_directory = "/"
+      posix_user = {
+        gid = "0"
+        uid = "0"
+      }
+      creation_info = {
+        owner_gid   = "0"
+        owner_uid   = "0"
+        permissions = "0755"
+      }
+    }
+  ]
 
   tags = {
     iac  = "terraform"

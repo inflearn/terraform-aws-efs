@@ -25,8 +25,8 @@ module "vpc" {
 }
 
 module "efs" {
-  name    = "example-inflab-efs-"
   source  = "../../"
+  name    = "example-inflab-efs-"
   vpc_id  = module.vpc.vpc_id
   subnets = module.vpc.private_subnets
 

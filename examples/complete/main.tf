@@ -12,7 +12,8 @@ provider "aws" {
 }
 
 module "vpc" {
-  source          = "git::ssh://git@github.com/inflearn/terraform-aws-vpc.git?ref=v3.14.0"
+  # source          = "git::ssh://git@github.com/inflearn/terraform-aws-vpc.git?ref=v3.14.0"\
+  source          = "../../../terraform-aws-vpc"
   name            = "example-inflab-efs"
   cidr            = "10.0.0.0/16"
   azs             = ["ap-northeast-2a"]
@@ -30,7 +31,7 @@ module "efs" {
   vpc_id  = module.vpc.vpc_id
   subnets = module.vpc.private_subnets
 
-  access_point = [
+  access_points = [
     {
       root_directory = "/"
       posix_user = {

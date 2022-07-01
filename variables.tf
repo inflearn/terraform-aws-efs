@@ -24,7 +24,7 @@ variable "tags" {
   type = map(string)
 }
 
-variable "access_point" {
+variable "access_points" {
   type    = any
   default = null
 }

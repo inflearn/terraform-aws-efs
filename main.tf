@@ -20,7 +20,7 @@ resource "aws_efs_mount_target" "this" {
 
 resource "aws_efs_access_point" "this" {
   for_each = {
-    for i, v in var.access_point :
+    for i, v in var.access_points :
     i => v
   }
 

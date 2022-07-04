@@ -23,3 +23,8 @@ variable "security_groups" {
 variable "tags" {
   type = map(string)
 }
+
+variable "access_points" {
+  type    = any
+  default = null
+}

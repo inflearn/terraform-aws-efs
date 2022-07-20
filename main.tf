@@ -24,7 +24,7 @@ resource "aws_efs_access_point" "this" {
   file_system_id = aws_efs_file_system.this.id
 
   dynamic "posix_user" {
-    for_each = try(each.value.posix_user, null) != null ? ["true"] : []
+    for_each = try(each.value.posix_user, null) != null ? [1] : []
 
     content {
       gid = each.value.posix_user.gid
@@ -36,7 +36,7 @@ resource "aws_efs_access_point" "this" {
     path = each.value.root_directory
 
     dynamic "creation_info" {
-      for_each = try(each.value.creation_info, null) != null ? ["true"] : []
+      for_each = try(each.value.creation_info, null) != null ? [1] : []
 
       content {
         owner_gid   = each.value.creation_info.owner_gid

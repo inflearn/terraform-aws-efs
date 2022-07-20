@@ -7,5 +7,5 @@ output "arn" {
 }
 
 output "access_point_ids" {
-  value = { for acp in aws_efs_access_point.this : acp.root_directory[0].path => acp.id }
+  value = [for acp in aws_efs_access_point.this : acp.id]
 }

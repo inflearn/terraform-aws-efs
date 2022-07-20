@@ -10,6 +10,11 @@ variable "name" {
   type = string
 }
 
+variable "encrypted" {
+  type    = bool
+  default = false
+}
+
 variable "enable_backup" {
   type    = bool
   default = true

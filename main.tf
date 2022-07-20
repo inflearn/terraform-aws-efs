@@ -1,5 +1,6 @@
 resource "aws_efs_file_system" "this" {
-  tags = merge(var.tags, { Name = var.name })
+  encrypted = var.encrypted
+  tags      = merge(var.tags, { Name = var.name })
 }
 
 resource "aws_efs_backup_policy" "this" {
@@ -12,18 +13,14 @@ resource "aws_efs_backup_policy" "this" {
 }
 
 resource "aws_efs_mount_target" "this" {
-  for_each        = { for i, v in var.subnets : i => v }
+  for_each        = {for i, v in var.subnets : i => v}
   file_system_id  = aws_efs_file_system.this.id
   subnet_id       = each.value
   security_groups = var.security_groups
 }
 
 resource "aws_efs_access_point" "this" {
-  for_each = {
-    for i, v in var.access_points :
-    i => v
-  }
-
+  for_each       = {for i, v in var.access_points : i => v}
   file_system_id = aws_efs_file_system.this.id
 
   dynamic "posix_user" {

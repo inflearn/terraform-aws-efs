@@ -12,7 +12,7 @@ variable "name" {
 
 variable "encrypted" {
   type    = bool
-  default = false
+  default = true
 }
 
 variable "enable_backup" {

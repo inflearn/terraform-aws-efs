@@ -31,5 +31,5 @@ variable "tags" {
 
 variable "access_points" {
   type    = any
-  default = null
+  default = []
 }
